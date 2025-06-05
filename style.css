@@ -1,0 +1,114 @@
+/* Dashboard-specific styling */
+.stats-card {
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .stats-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .stats-icon {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .stats-card::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: -20px;
+    right: -20px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  .chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+  }
+  
+  /* Status badges */
+  .badge-confirmed {
+    background-color: #e74a3b;
+    color: white;
+  }
+  
+  .badge-suspected {
+    background-color: #f6c23e;
+    color: #333;
+  }
+  
+  .badge-recovered {
+    background-color: #1cc88a;
+    color: white;
+  }
+  
+  .badge-active {
+    background-color: #e74a3b;
+    color: white;
+  }
+  
+  .badge-under-treatment {
+    background-color: #4e73df;
+    color: white;
+  }
+  
+  .badge-resolved {
+    background-color: #1cc88a;
+    color: white;
+  }
+  
+  /* Table hover effects */
+  .table-hover tbody tr:hover {
+    background-color: rgba(78, 115, 223, 0.05);
+  }
+  
+  /* Dashboard header */
+  .dashboard-header {
+    position: relative;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .dashboard-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #4e73df;
+  }
+  
+  /* Card animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .card {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.2s; }
+  .card:nth-child(3) { animation-delay: 0.3s; }
+  .card:nth-child(4) { animation-delay: 0.4s; }
+  
+  /* Responsive chart containers */
+  @media (max-width: 768px) {
+    .chart-container {
+      height: 250px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .chart-container {
+      height: 200px;
+    }
+  }
