@@ -35,7 +35,6 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownDengue">
                             <a class="dropdown-item <?php echo ($_SERVER['PHP_SELF'] == '/dengue/index.php') ? 'active' : ''; ?>" href="<?php echo $site_url; ?>/dengue/index.php">All Cases</a>
                             <a class="dropdown-item <?php echo ($_SERVER['PHP_SELF'] == '/dengue/add.php') ? 'active' : ''; ?>" href="<?php echo $site_url; ?>/dengue/add.php">Add New Case</a>
-                            <a class="dropdown-item <?php echo ($_SERVER['PHP_SELF'] == '/dengue/map.php') ? 'active' : ''; ?>" href="<?php echo $site_url; ?>/dengue/map.php">Case Map</a>
                             <a class="dropdown-item <?php echo ($_SERVER['PHP_SELF'] == '/dengue/reports.php') ? 'active' : ''; ?>" href="<?php echo $site_url; ?>/dengue/reports.php">Reports</a>
                         </div>
                     </li>
@@ -52,19 +51,19 @@
 <a class="dropdown-item <?php echo (basename($_SERVER['PHP_SELF']) == 'reports.php' && strpos($_SERVER['PHP_SELF'], '/illness/') !== false) ? 'active' : ''; ?>" href="<?php echo $site_url; ?>/illness/reports.php">Reports</a>
                         </div>
                     </li>
-                    
+<!--                     
                     <li class="nav-item <?php echo (strpos($_SERVER['PHP_SELF'], '/reports/') !== false) ? 'active' : ''; ?>">
                         <a class="nav-link" href="<?php echo $site_url; ?>/reports/index.php">
                             <i class="fas fa-chart-bar mr-1"></i> Reports & Analytics
                         </a>
-                    </li>
+                    </li> -->
                     
-                    <li class="nav-item <?php echo (strpos($_SERVER['PHP_SELF'], '/alerts/') !== false) ? 'active' : ''; ?>">
+                    <!-- <li class="nav-item <?php echo (strpos($_SERVER['PHP_SELF'], '/alerts/') !== false) ? 'active' : ''; ?>">
                         <a class="nav-link" href="<?php echo $site_url; ?>/alerts/index.php">
                             <i class="fas fa-bell mr-1"></i> Alerts
                         </a>
                     </li>
-                    
+                     -->
                     <?php if ($_SESSION['user_role'] == 'admin'): ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,7 +71,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
                             <a class="dropdown-item <?php echo ($_SERVER['PHP_SELF'] == '/users/index.php') ? 'active' : ''; ?>" href="<?php echo $site_url; ?>/users/index.php">User Management</a>
-                            <a class="dropdown-item <?php echo ($_SERVER['PHP_SELF'] == '/settings/index.php') ? 'active' : ''; ?>" href="<?php echo $site_url; ?>/settings/index.php">System Settings</a>
+                            <!-- <a class="dropdown-item <?php echo ($_SERVER['PHP_SELF'] == '/settings/index.php') ? 'active' : ''; ?>" href="<?php echo $site_url; ?>/settings/index.php">System Settings</a> -->
                         </div>
                     </li>
                     <?php endif; ?>

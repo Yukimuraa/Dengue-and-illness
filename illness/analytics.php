@@ -177,6 +177,13 @@ while ($row = $age_group_result->fetch_assoc()) {
     <h1 class="h3 mb-2 text-gray-800">Illness Analytics</h1>
     <p class="mb-4">Comprehensive analytics and visualizations for illness cases.</p>
 
+    <!-- Settings Link -->
+    <div class="mb-4">
+        <a href="settings.php" class="btn btn-primary">
+            <i class="fas fa-cog mr-1"></i> System Settings
+        </a>
+    </div>
+
     <!-- Filters -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -211,6 +218,10 @@ while ($row = $age_group_result->fetch_assoc()) {
                 </div>
                 <div class="col-md-4 mb-3 d-flex align-items-end">
                     <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    <a href="export_illness_analytics.php?year=<?php echo $year; ?>&barangay_id=<?php echo $barangay_id; ?>" 
+                       class="btn btn-success ml-2">
+                        <i class="fas fa-file-excel mr-1"></i> Export to Excel
+                    </a>
                 </div>
             </form>
         </div>
@@ -251,15 +262,8 @@ while ($row = $age_group_result->fetch_assoc()) {
                     <h6 class="m-0 font-weight-bold text-primary">Illness Type Distribution</h6>
                 </div>
                 <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
+                    <div class="chart-pie pt-4">
                         <canvas id="illnessTypeChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-center small">
-                        <?php foreach ($illness_types as $index => $type): ?>
-                            <span class="mr-2">
-                                <i class="fas fa-circle" style="color: <?php echo get_chart_color($index); ?>"></i> <?php echo $type; ?>
-                            </span>
-                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -272,7 +276,7 @@ while ($row = $age_group_result->fetch_assoc()) {
                     <h6 class="m-0 font-weight-bold text-primary">Age Group Distribution</h6>
                 </div>
                 <div class="card-body">
-                    <div class="chart-bar pt-4 pb-2">
+                    <div class="chart-bar">
                         <canvas id="ageGroupChart"></canvas>
                     </div>
                 </div>
@@ -283,11 +287,11 @@ while ($row = $age_group_result->fetch_assoc()) {
     <!-- Barangay Distribution -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Top Barangays by Illness Cases</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Top 10 Barangays by Cases</h6>
         </div>
         <div class="card-body">
             <div class="chart-bar">
-                <canvas id="barangayDistributionChart"></canvas>
+                <canvas id="barangayChart"></canvas>
             </div>
         </div>
     </div>
@@ -551,31 +555,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Barangay Distribution Chart
-        var barangayDistributionCtx = document.getElementById('barangayDistributionChart').getContext('2d');
-        var barangayDistributionChart = new Chart(barangayDistributionCtx, {
+        var barangayCtx = document.getElementById('barangayChart').getContext('2d');
+        var barangayChart = new Chart(barangayCtx, {
             type: 'bar',
             data: {
                 labels: <?php echo json_encode($barangay_names); ?>,
                 datasets: [{
                     label: 'Cases',
                     data: <?php echo json_encode($barangay_counts); ?>,
-                    backgroundColor: '#36b9cc',
-                    hoverBackgroundColor: '#2c9faf',
+                    backgroundColor: 'rgb(28, 200, 138)',
+                    hoverBackgroundColor: 'rgb(24, 160, 100)',
                     borderWidth: 0,
                     borderRadius: 4
                 }]
             },
             options: {
-                indexAxis: 'y',
+                responsive: true,
                 maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        left: 10,
-                        right: 25,
-                        top: 25,
-                        bottom: 0
-                    }
-                },
                 scales: {
                     x: {
                         beginAtZero: true,

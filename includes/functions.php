@@ -9,6 +9,18 @@ function clean($data) {
     return $data;
 }
 
+// Set flash message
+function setFlashMessage($type, $message) {
+    $_SESSION['message'] = $message;
+    $_SESSION['message_type'] = $type;
+}
+
+// Redirect with flash message
+function redirect($url) {
+    header("Location: $url");
+    exit;
+}
+
 // Get all barangays
 function getBarangays() {
     return [
